@@ -8,7 +8,10 @@ export default function Header() {
   return (
     <header className="bg-primary p-4 flex justify-between items-center">
       <Link href="/">
-        <a className="font-bold text-xl">Alvibabu Store</a>
+        <a className="flex items-center space-x-2">
+          <img src="/logo.png" alt="Logo" className="h-8" />
+          <span className="font-bold text-xl">Alvibabu Store</span>
+        </a>
       </Link>
       <nav>
         <Link href="/cart">
