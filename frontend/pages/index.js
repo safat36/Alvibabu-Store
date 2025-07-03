@@ -2,9 +2,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 
-export async function getServerSideProps() {
-  const res = await fetch('http://localhost:5000/api/products');
+export async function getServerSideProps(context) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
+  const res = await fetch(`${baseUrl}/api/products`);
   const products = await res.json();
+
   return { props: { products } };
 }
 
