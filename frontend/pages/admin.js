@@ -7,14 +7,16 @@ export default function Admin() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    fetch(`${apiUrl}/api/products`)
       .then(res => res.json())
       .then(setProducts);
-  }, []);
+  }, [apiUrl]);
 
   const addProduct = async () => {
-    const res = await fetch('http://localhost:5000/api/products', {
+    const res = await fetch(`${apiUrl}/api/products`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, price: Number(price), description, image }),
@@ -28,7 +30,7 @@ export default function Admin() {
   };
 
   const deleteProduct = async (id) => {
-    await fetch(`http://localhost:5000/api/products/${id}`, { method: 'DELETE' });
+    await fetch(`${apiUrl}/api/products/${id}`, { method: 'DELETE' });
     setProducts(prev => prev.filter(p => p._id !== id));
   };
 
